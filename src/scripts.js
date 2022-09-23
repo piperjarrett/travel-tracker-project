@@ -1,25 +1,38 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+//Import CSS and Images
 import "./css/styles.css";
-import { promiseAll } from "./apiCalls.js";
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/down-arrow.svg";
 
+//Import Fetch
+import { promiseAll } from "./apiCalls.js";
+
+//Import Classes
+import Traveler from "./Traveler";
+import TravelerTrips from "./TravelerTrips";
+
 //Gloabl Variables
-let travelData;
+let travelersData;
 let tripsData;
+let destinationData;
 let traveler;
+let travelerTrips;
 
 //Event Listeners
 window.addEventListener("load", promiseAll);
 
 //Functions
+function getRandomIndex(travelersData) {
+  return Math.floor(Math.random() * travelersData.length);
+}
 
 promiseAll().then((responses) => {
-  travelData = responses[0].travelers;
+  travelersData = responses[0].travelers;
   tripsData = responses[1].trips;
-  traveler = new Traveler();
+  destinationData = responses[2].destinations;
+  console.log(getRandomIndex(travelersData));
+  traveler = new Traveler(travelersData[getRandomIndex(travelersData)]);
+  travelerTrips = new TravelerTrips(
+    tripsData.filter((trip) => trip.userID === traveler.id)
+  );
+  console.log(traveler);
+  console.log(travelerTrips);
 });

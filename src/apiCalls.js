@@ -5,11 +5,13 @@ function fetchData(details) {
 }
 
 const promiseAll = () => {
-  const result = Promise.all([fetchData("travelers"), fetchData("trips")]).then(
-    (response) => {
-      return response;
-    }
-  );
+  const result = Promise.all([
+    fetchData("travelers"),
+    fetchData("trips"),
+    fetchData("destinations"),
+  ]).then((response) => {
+    return response;
+  });
   return result;
 };
 
