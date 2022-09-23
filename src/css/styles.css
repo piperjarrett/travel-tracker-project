@@ -1,3 +1,105 @@
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: #c9af98;
+  margin: 0;
+}
+header {
+  background: #3a4660;
+  color: white;
+}
+
+main {
+  margin-left: 1vw;
+  margin-right: 1vw;
+  flex-wrap: wrap;
+}
+
+input {
+  width: 10vw;
+  height: 2vw;
+  border-radius: 5px;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-section {
+  display: flex;
+}
+
+.amount-spent {
+  font-size: 14px;
+}
+
+.booking-form {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: #ed8a63;
+  margin-top: 1vw;
+}
+
+.destination,
+.departure-date,
+.arrival-date,
+.passengers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.passengers-input {
+  width: 3vw;
+}
+
+.search {
+  width: 4vw;
+  height: 2vw;
+  border-radius: 5px;
+  margin-top: 3vw;
+}
+
+.trips-info {
+  display: flex;
+}
+
+.booking-trip {
+  background: #3a4660;
+  margin-top: 1vw;
+  margin-right: 2vw;
+  padding: 10vw;
+  border-radius: 10px;
+  width: 15vw;
+  height: 11vw;
+  align-items: center;
+}
+
+.book-with-us {
+  font-size: 2vw;
+
+  background-color: #ed8a63;
+  border-radius: 10px;
+  padding: 4vw;
+}
+
+.booked-trips {
+  display: flex;
+  background: #3a4660;
+  margin-top: 1vw;
+  border-radius: 10px;
+  padding: 4vw;
+  width: 53vw;
+  justify-content: center;
+}
+
+.past-trips,
+.upcoming-trips,
+.pending-trips {
+  margin: 1vw;
+  background: #ed8a63;
+  border-radius: 10px;
+  padding: 2vw;
 }
