@@ -1,16 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webpack Starter Kit</title>
+  </head>
+  <body>
+    <header class="top-nav">
+      <img class="travel-tracker-icon" alt="travel tracker icon" />
+      <div class="user-info">
+        <div class="profile-section">
+          <p>Profile Name</p>
+          <img
+            class="arrow-icon"
+            alt="icon of arrow"
+            src="../src/images/down-arrow.svg"
+          />
+        </div>
+        <p class="amount-spent">Total Amount Spent: $1,324</p>
+      </div>
+    </header>
+    <main class="main">
+      <section class="booking-form">
+        <div class="destination">
+          <p>Destination</p>
+          <input type="text" placeholder="Destination" />
+        </div>
+        <div class="departure-date">
+          <p>Departure Date</p>
+          <input
+            class="departure-city"
+            type="date"
+            id="departure-city"
+            name="trip-start"
+            value=""
+            min="2022-09-27"
+            max="2023-09-27"
+          />
+        </div>
+        <div class="arrival-date">
+          <p>Arrival Date</p>
+          <input
+            class="arrival-city"
+            type="date"
+            id="arrival-city"
+            name="trip-start"
+            value=""
+            min="2022-09-27"
+            max="2023-09-27"
+          />
+        </div>
+        <div class="passengers">
+          <p>Passengers</p>
+          <input type="number" min="1" max="10" class="passengers-input" />
+        </div>
+        <button class="search">Search</button>
+      </section>
+      <section class="trips-info">
+        <section class="booking-trip">
+          <p class="book-with-us">BOOK WITH US</p>
+        </section>
+        <section class="booked-trips">
+          <section class="past-trips">
+            <p class="past">PAST TRIPS</p>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+          </section>
+          <section class="upcoming-trips">
+            <p class="upcoming">UPCOMING TRIPS</p>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+          </section>
+          <section class="pending-trips">
+            <p class="pending">PENDING TRIPS</p>
+            <ul>
+              <li>Destination:</li>
+              <li>Duration:</li>
+              <li>Dates:</li>
+              <li>Status: Approved</li>
+            </ul>
+          </section>
+        </section>
+      </section>
+    </main>
 
-</body>
+    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+    <script src="bundle.js"></script>
+  </body>
 </html>
