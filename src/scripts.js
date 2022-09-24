@@ -28,7 +28,6 @@ promiseAll().then((responses) => {
   travelersData = responses[0].travelers;
   tripsData = responses[1].trips;
   destinationData = responses[2].destinations;
-  console.log(getRandomIndex(travelersData));
   traveler = new Traveler(travelersData[getRandomIndex(travelersData)]);
   travelerTrips = new TravelerTrips(
     tripsData.filter((trip) => trip.userID === traveler.id)
