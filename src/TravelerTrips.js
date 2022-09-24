@@ -7,7 +7,6 @@ class TravelerTrips {
     let lodgingFee;
     let flightFee;
     let totalFee;
-
     const totalCost = this.trips.reduce((total, trip) => {
       destinations.forEach((destination) => {
         let tripDate = new Date(trip.date);
