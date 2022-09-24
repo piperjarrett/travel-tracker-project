@@ -16,6 +16,11 @@ let destinationData;
 let traveler;
 let travelerTrips;
 
+//Query Selectors
+const profileName = document.querySelector(".profile-name");
+const pastTrips = document.querySelector(".past-trips");
+const totalAmountSpent = document.querySelector(".amount-spent");
+
 //Event Listeners
 window.addEventListener("load", promiseAll);
 
@@ -32,4 +37,36 @@ promiseAll().then((responses) => {
   travelerTrips = new TravelerTrips(
     tripsData.filter((trip) => trip.userID === traveler.id)
   );
+  displayDashboard();
 });
+
+function displayDashboard() {
+  profileName.innerText = `Hi, ${traveler.getFirstName()}!`;
+  totalAmountSpent.innerText = `Total Amount Spent In 2022:
+  ${travelerTrips.calculateTotalCost(destinationData)}`;
+  travelerTrips.trips.forEach((trip) => {
+    pastTrips.innerHTML += `
+    <ul>
+      <li>Destination: ${
+        findDestination().find(
+          (destination) => destination.id === trip.destinationID
+        ).destination
+      }</li>
+      <li>Duration: ${trip.duration} days</li>
+      <li>Date: ${trip.date}</li>
+      <li>Status: ${trip.status}</li>
+    </ul>`;
+  });
+}
+
+function findDestination() {
+  const destinations = travelerTrips.trips.reduce((allDestinations, trip) => {
+    destinationData.forEach((destination) => {
+      if (trip.destinationID === destination.id) {
+        allDestinations.push(destination);
+      }
+    });
+    return allDestinations;
+  }, []);
+  return destinations;
+}
