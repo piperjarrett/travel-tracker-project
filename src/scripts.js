@@ -19,6 +19,7 @@ let travelerTrips;
 //Query Selectors
 const profileName = document.querySelector(".profile-name");
 const pastTrips = document.querySelector(".past-trips");
+const totalAmountSpent = document.querySelector(".amount-spent");
 
 //Event Listeners
 window.addEventListener("load", promiseAll);
@@ -41,8 +42,10 @@ promiseAll().then((responses) => {
 
 function displayDashboard() {
   profileName.innerText = `Hi, ${traveler.getFirstName()}!`;
+  totalAmountSpent.innerText = `Total Amount Spent: ${travelerTrips.calculateTotalCost(
+    destinationData
+  )}`;
   travelerTrips.trips.forEach((trip) => {
-    console.log(trip.destinationID);
     pastTrips.innerHTML += `
     <ul>
       <li>Destination: ${
