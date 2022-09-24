@@ -1,0 +1,32 @@
+export const trips = [
+  {
+    id: 81,
+    userID: 10,
+    destinationID: 26,
+    travelers: 1,
+    date: "2020/08/31",
+    duration: 16,
+    status: "approved",
+    suggestedActivities: [],
+  },
+  {
+    id: 119,
+    userID: 10,
+    destinationID: 47,
+    travelers: 5,
+    date: "2020/05/28",
+    duration: 20,
+    status: "approved",
+    suggestedActivities: [],
+  },
+  {
+    id: 185,
+    userID: 10,
+    destinationID: 35,
+    travelers: 4,
+    date: "2019/09/02",
+    duration: 16,
+    status: "approved",
+    suggestedActivities: [],
+  },
+];
