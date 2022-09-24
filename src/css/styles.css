@@ -44,14 +44,14 @@ input {
 
 .destination,
 .departure-date,
-.arrival-date,
 .passengers {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.passengers-input {
+.passengers-input,
+.duration-input {
   width: 3vw;
 }
 

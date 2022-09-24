@@ -33,6 +33,4 @@ promiseAll().then((responses) => {
   travelerTrips = new TravelerTrips(
     tripsData.filter((trip) => trip.userID === traveler.id)
   );
-  console.log(traveler);
-  console.log(travelerTrips);
 });
