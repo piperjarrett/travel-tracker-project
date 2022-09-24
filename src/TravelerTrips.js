@@ -16,7 +16,6 @@ class TravelerTrips {
           total += totalFee;
         }
       });
-
       return total;
     }, 0);
     return `$${totalCost.toFixed()}`;
