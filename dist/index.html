@@ -25,18 +25,23 @@
       <section class="booking-form">
         <div class="destination">
           <p>Destination</p>
-          <input
+          <!-- <input
             type="text"
             placeholder="Destination"
             list="destinations"
             class="destinations-input"
-          />
-          <datalist id="destinations"> </datalist>
+          /> -->
+          <!-- <div id="destinations"></div> -->
+          <form>
+            <select name="destinations" id="destinations"
+              ><option></option>
+            </select>
+          </form>
         </div>
         <div class="departure-date">
           <p>Departure Date</p>
           <input
-            class="departure-date"
+            class="departure-date-input"
             type="date"
             id="departure-city"
             name="trip-start"

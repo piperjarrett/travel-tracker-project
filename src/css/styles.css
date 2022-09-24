@@ -12,7 +12,8 @@ main {
   margin-right: 1vw;
 }
 
-input {
+input,
+select {
   width: 10vw;
   height: 2vw;
   border-radius: 5px;

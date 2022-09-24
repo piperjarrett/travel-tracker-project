@@ -20,10 +20,10 @@ let travelerTrips;
 const profileName = document.querySelector(".profile-name");
 const pastTrips = document.querySelector(".past-trips");
 const totalAmountSpent = document.querySelector(".amount-spent");
-const destinationList = document.querySelector("#destinations");
+const destinationList = document.getElementById("destinations");
 const searchButton = document.querySelector(".search");
 const newTrip = document.querySelector(".booking-trip");
-const departureDateInput = document.querySelector(".departure-date");
+const departureDateInput = document.querySelector(".departure-date-input");
 const durationInput = document.querySelector(".duration-input");
 const passengersInput = document.querySelector(".passengers-input");
 
@@ -55,8 +55,8 @@ function displayDashboard() {
   totalAmountSpent.innerText = `Total Amount Spent In 2022:
   ${travelerTrips.calculateTotalCost(destinationData)}`;
   destinationData.forEach((destination) => {
-    let destinationName = destination.destination.split(",");
-    destinationList.innerHTML += `<option value= ${destination.destination} > </option>`;
+    console.log(typeof destination.destination);
+    destinationList.innerHTML += `<option value=${destination.destination}>${destination.destination}</option>`;
   });
   travelerTrips.trips.forEach((trip) => {
     pastTrips.innerHTML += `
@@ -85,30 +85,45 @@ function findDestination() {
   return destinations;
 }
 
+function calculateCostOfNewTrip() {
+  const travelerNewDestination = destinationData.find(
+    (destination) =>
+      destination.destination ===
+      destinationList.options[destinationList.selectedIndex].text
+  );
+  const lodgingAmount =
+    travelerNewDestination.estimatedLodgingCostPerDay * durationInput.value;
+  const flightAmount =
+    travelerNewDestination.estimatedFlightCostPerPerson * passengersInput.value;
+  const totalAmount = lodgingAmount + flightAmount;
+  return totalAmount * 1.1;
+}
+
 function displayNewTrip() {
-  console.log(destinationInput.value);
+  let departureDate = departureDateInput.value.split("-").join("/");
   newTrip.innerHTML = "";
   newTrip.innerHTML = `
   <div class='new-trip-info'
   <ul clas='new-trip'>
-    <li>Destination: ${destinationInput.value}</li>
+    <li>Destination: ${
+      destinationList.options[destinationList.selectedIndex].text
+    }</li>
     <li>Duration: ${durationInput.value} days</li>
-    <li>Date: ${departureDateInput.value}</li>
+    <li>Date: ${departureDate}</li>
     <li>Travelers: ${passengersInput.value}</li>
-    <li>Cost: $ </li>
+    <li>Cost: $${calculateCostOfNewTrip()}</li>
   </ul>
-  <button class='submit-button'>Submit</button>
+  <button class='submit-button'>Submit Trip</button>
   </div>`;
   const submitButton = document.querySelector(".submit-button");
   submitButton.addEventListener("click", displayPendingTrips);
 }
 
 function displayPendingTrips() {
-  //post
-  //filter through data and find pending trips
-
   pendingTrips.innerHTML += `<ul>
-    <li>Destination: ${destinationInput.value}</li>
+    <li>Destination: ${
+      destinationList.options[destinationList.selectedIndex].text
+    }</li>
     <li>Duration: ${durationInput.value} days days</li>
     <li>Date: ${departureDateInput.value}</li>
     <li>Status: pending</li>
