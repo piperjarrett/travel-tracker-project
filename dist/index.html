@@ -25,12 +25,17 @@
       <section class="booking-form">
         <div class="destination">
           <p>Destination</p>
-          <input type="text" placeholder="Destination" />
+
+          <form>
+            <select name="destinations" id="destinations"
+              ><option></option>
+            </select>
+          </form>
         </div>
         <div class="departure-date">
           <p>Departure Date</p>
           <input
-            class="departure-city"
+            class="departure-date-input"
             type="date"
             id="departure-city"
             name="trip-start"
@@ -64,7 +69,7 @@
             <option value="10"> </option>
           </datalist>
         </div>
-        <button class="search">Search</button>
+        <button class="search" disabled>Search</button>
       </section>
       <section class="trips-info">
         <section class="booking-trip">
@@ -76,33 +81,9 @@
           </section>
           <section class="upcoming-trips">
             <p class="upcoming">UPCOMING TRIPS</p>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Approved</li>
-            </ul>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Approved</li>
-            </ul>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Approved</li>
-            </ul>
           </section>
           <section class="pending-trips">
             <p class="pending">PENDING TRIPS</p>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Pending</li>
-            </ul>
           </section>
         </section>
       </section>

@@ -15,14 +15,26 @@ let tripsData;
 let destinationData;
 let traveler;
 let travelerTrips;
+let departureDate;
 
 //Query Selectors
 const profileName = document.querySelector(".profile-name");
 const pastTrips = document.querySelector(".past-trips");
 const totalAmountSpent = document.querySelector(".amount-spent");
+const destinationList = document.getElementById("destinations");
+const searchButton = document.querySelector(".search");
+const newTrip = document.querySelector(".booking-trip");
+const departureDateInput = document.querySelector(".departure-date-input");
+const durationInput = document.querySelector(".duration-input");
+const passengersInput = document.querySelector(".passengers-input");
+const pendingTrips = document.querySelector(".pending-trips");
+const destinationInput = document.querySelector(".destinations-input");
+const bookingForm = document.querySelector(".booking-form");
 
 //Event Listeners
 window.addEventListener("load", promiseAll);
+searchButton.addEventListener("click", displayNewTrip);
+bookingForm.addEventListener("input", enableButton);
 
 //Functions
 function getRandomIndex(travelersData) {
@@ -44,6 +56,10 @@ function displayDashboard() {
   profileName.innerText = `Hi, ${traveler.getFirstName()}!`;
   totalAmountSpent.innerText = `Total Amount Spent In 2022:
   ${travelerTrips.calculateTotalCost(destinationData)}`;
+  destinationData.forEach((destination) => {
+    console.log(typeof destination.destination);
+    destinationList.innerHTML += `<option value=${destination.destination}>${destination.destination}</option>`;
+  });
   travelerTrips.trips.forEach((trip) => {
     pastTrips.innerHTML += `
     <ul>
@@ -69,4 +85,68 @@ function findDestination() {
     return allDestinations;
   }, []);
   return destinations;
+}
+
+function enableButton() {
+  if (
+    destinationList.options[destinationList.selectedIndex].text &&
+    durationInput.value &&
+    departureDateInput.value &&
+    passengersInput.value
+  ) {
+    searchButton.disabled = false;
+  } else {
+    searchButton.disabled = true;
+  }
+}
+function calculateCostOfNewTrip() {
+  const travelerNewDestination = destinationData.find(
+    (destination) =>
+      destination.destination ===
+      destinationList.options[destinationList.selectedIndex].text
+  );
+  const lodgingAmount =
+    travelerNewDestination.estimatedLodgingCostPerDay * durationInput.value;
+  const flightAmount =
+    travelerNewDestination.estimatedFlightCostPerPerson * passengersInput.value;
+  const totalAmount = lodgingAmount + flightAmount;
+  return (totalAmount * 1.1).toFixed();
+}
+
+function displayNewTrip() {
+  departureDate = departureDateInput.value.split("-").join("/");
+  newTrip.innerHTML = "";
+  newTrip.innerHTML = `
+  <div class='new-trip-info'
+  <ul clas='new-trip'>
+    <li>Destination: ${
+      destinationList.options[destinationList.selectedIndex].text
+    }</li>
+    <li>Duration: ${durationInput.value} days</li>
+    <li>Date: ${departureDate}</li>
+    <li>Travelers: ${passengersInput.value}</li>
+    <li>Cost: $${calculateCostOfNewTrip()}</li>
+  </ul>
+  <button class='submit-button'>Submit Trip</button>
+  </div>`;
+  const submitButton = document.querySelector(".submit-button");
+  submitButton.addEventListener("click", displayPendingTrips);
+}
+
+function displayPendingTrips() {
+  pendingTrips.innerHTML += `<ul>
+    <li>Destination: ${
+      destinationList.options[destinationList.selectedIndex].text
+    }</li>
+    <li>Duration: ${durationInput.value} days</li>
+    <li>Date: ${departureDate}</li>
+    <li>Status: pending</li>
+  </ul>`;
+  newTrip.innerHTML = "";
+  newTrip.innerHTML = `<p class="book-with-us">BOOK WITH US</p>`;
+  destinationList.options[destinationList.selectedIndex].text = "";
+  durationInput.value = "";
+  departureDateInput.value = "";
+  passengersInput.value = "";
+  enableButton();
 }

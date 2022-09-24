@@ -10,13 +10,17 @@ header {
 main {
   margin-left: 1vw;
   margin-right: 1vw;
-  flex-wrap: wrap;
 }
 
-input {
+input,
+select {
   width: 10vw;
   height: 2vw;
   border-radius: 5px;
+}
+
+h1 {
+  color: white;
 }
 
 .top-nav {
@@ -43,6 +47,7 @@ input {
 
 .booking-form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   border-radius: 10px;
   padding: 8px;
@@ -68,6 +73,20 @@ input {
   height: 2vw;
   border-radius: 5px;
   margin-top: 3vw;
+  color: white;
+  background: #3a4660;
+}
+.search:hover {
+  cursor: pointer;
+  box-shadow: 1px 0 3px white, -1px 0 3px white, 0 1px 3px white,
+    0 -1px 3px white;
+}
+
+.search:disabled {
+  background-color: #d5d5e3;
+  color: #7d7d7d;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .trips-info {
@@ -75,36 +94,62 @@ input {
 }
 
 .booking-trip {
+  width: 15%;
+  justify-content: center;
   background: #3a4660;
+  height: 100%;
   margin-top: 1vw;
   margin-right: 2vw;
   padding: 10vw;
   border-radius: 10px;
-  width: 15vw;
-  height: 11vw;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .book-with-us {
-  font-size: 2vw;
+  margin: 1vw;
+  font-size: 40px;
   background-color: #ed8a63;
   border-radius: 10px;
   padding: 4vw;
 }
 
+.new-trip-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 1vw;
+  background-color: #ed8a63;
+  border-radius: 10px;
+  padding: 2vw;
+  height: 85%;
+}
+
+.submit-button {
+  width: 6vw;
+  margin-top: 1vw;
+  margin-left: 7vw;
+  border-radius: 2vw;
+  color: white;
+  background: #3a4660;
+}
+
 .booked-trips {
   display: flex;
+  flex-wrap: wrap;
+  height: 100%;
   background: #3a4660;
   margin-top: 1vw;
   border-radius: 10px;
-  padding: 4vw;
-  width: 53vw;
+  padding-top: 1vw;
+  width: 85%;
   justify-content: center;
 }
 
 .past-trips,
 .upcoming-trips,
 .pending-trips {
+  height: 85%;
   margin: 1vw;
   background: #ed8a63;
   border-radius: 10px;
