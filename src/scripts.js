@@ -42,7 +42,7 @@ promiseAll().then((responses) => {
 
 function displayDashboard() {
   profileName.innerText = `Hi, ${traveler.getFirstName()}!`;
-  totalAmountSpent.innerText = `Total Amount Spent: ${travelerTrips.calculateTotalCost(
+  totalAmountSpent.innerText = `Total Amount Spent In 2022: ${travelerTrips.calculateTotalCost(
     destinationData
   )}`;
   travelerTrips.trips.forEach((trip) => {

@@ -27,6 +27,7 @@ input {
 
 .profile-section {
   display: flex;
+  margin-right: 1.5vw;
 }
 
 .amount-spent {

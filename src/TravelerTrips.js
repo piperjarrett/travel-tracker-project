@@ -7,9 +7,14 @@ class TravelerTrips {
     let lodgingFee;
     let flightFee;
     let totalFee;
+
     const totalCost = this.trips.reduce((total, trip) => {
       destinations.forEach((destination) => {
-        if (trip.destinationID === destination.id) {
+        let tripDate = new Date(trip.date);
+        if (
+          trip.destinationID === destination.id &&
+          tripDate.getFullYear() === 2022
+        ) {
           lodgingFee = destination.estimatedLodgingCostPerDay * trip.duration;
           flightFee = destination.estimatedFlightCostPerPerson * trip.travelers;
           totalFee = (lodgingFee + flightFee) * 1.1;
