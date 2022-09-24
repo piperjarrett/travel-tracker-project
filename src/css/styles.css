@@ -76,6 +76,18 @@ h1 {
   color: white;
   background: #3a4660;
 }
+.search:hover {
+  cursor: pointer;
+  box-shadow: 1px 0 3px white, -1px 0 3px white, 0 1px 3px white,
+    0 -1px 3px white;
+}
+
+.search:disabled {
+  background-color: #d5d5e3;
+  color: #7d7d7d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
 .trips-info {
   display: flex;
@@ -114,7 +126,7 @@ h1 {
 }
 
 .submit-button {
-  width: 4vw;
+  width: 6vw;
   margin-top: 1vw;
   margin-left: 7vw;
   border-radius: 2vw;

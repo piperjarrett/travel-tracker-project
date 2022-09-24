@@ -15,6 +15,7 @@ let tripsData;
 let destinationData;
 let traveler;
 let travelerTrips;
+let departureDate;
 
 //Query Selectors
 const profileName = document.querySelector(".profile-name");
@@ -26,13 +27,14 @@ const newTrip = document.querySelector(".booking-trip");
 const departureDateInput = document.querySelector(".departure-date-input");
 const durationInput = document.querySelector(".duration-input");
 const passengersInput = document.querySelector(".passengers-input");
-
 const pendingTrips = document.querySelector(".pending-trips");
 const destinationInput = document.querySelector(".destinations-input");
+const bookingForm = document.querySelector(".booking-form");
 
 //Event Listeners
 window.addEventListener("load", promiseAll);
 searchButton.addEventListener("click", displayNewTrip);
+bookingForm.addEventListener("input", enableButton);
 
 //Functions
 function getRandomIndex(travelersData) {
@@ -85,6 +87,18 @@ function findDestination() {
   return destinations;
 }
 
+function enableButton() {
+  if (
+    destinationList.options[destinationList.selectedIndex].text &&
+    durationInput.value &&
+    departureDateInput.value &&
+    passengersInput.value
+  ) {
+    searchButton.disabled = false;
+  } else {
+    searchButton.disabled = true;
+  }
+}
 function calculateCostOfNewTrip() {
   const travelerNewDestination = destinationData.find(
     (destination) =>
@@ -96,11 +110,11 @@ function calculateCostOfNewTrip() {
   const flightAmount =
     travelerNewDestination.estimatedFlightCostPerPerson * passengersInput.value;
   const totalAmount = lodgingAmount + flightAmount;
-  return totalAmount * 1.1;
+  return (totalAmount * 1.1).toFixed();
 }
 
 function displayNewTrip() {
-  let departureDate = departureDateInput.value.split("-").join("/");
+  departureDate = departureDateInput.value.split("-").join("/");
   newTrip.innerHTML = "";
   newTrip.innerHTML = `
   <div class='new-trip-info'
@@ -124,10 +138,15 @@ function displayPendingTrips() {
     <li>Destination: ${
       destinationList.options[destinationList.selectedIndex].text
     }</li>
-    <li>Duration: ${durationInput.value} days days</li>
-    <li>Date: ${departureDateInput.value}</li>
+    <li>Duration: ${durationInput.value} days</li>
+    <li>Date: ${departureDate}</li>
     <li>Status: pending</li>
   </ul>`;
   newTrip.innerHTML = "";
   newTrip.innerHTML = `<p class="book-with-us">BOOK WITH US</p>`;
+  destinationList.options[destinationList.selectedIndex].text = "";
+  durationInput.value = "";
+  departureDateInput.value = "";
+  passengersInput.value = "";
+  enableButton();
 }
