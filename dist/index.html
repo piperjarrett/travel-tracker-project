@@ -25,12 +25,18 @@
       <section class="booking-form">
         <div class="destination">
           <p>Destination</p>
-          <input type="text" placeholder="Destination" />
+          <input
+            type="text"
+            placeholder="Destination"
+            list="destinations"
+            class="destinations-input"
+          />
+          <datalist id="destinations"> </datalist>
         </div>
         <div class="departure-date">
           <p>Departure Date</p>
           <input
-            class="departure-city"
+            class="departure-date"
             type="date"
             id="departure-city"
             name="trip-start"
@@ -68,41 +74,23 @@
       </section>
       <section class="trips-info">
         <section class="booking-trip">
+          <!-- <div class="new-trips-header">
+            <h1>NEW TRIP</h1>
+          </div> -->
           <p class="book-with-us">BOOK WITH US</p>
         </section>
         <section class="booked-trips">
+          <!-- <div class="booked-trips-header">
+            <h1>BOOKED TRIPS</h1>
+          </div> -->
           <section class="past-trips">
             <p class="past">PAST TRIPS</p>
           </section>
           <section class="upcoming-trips">
             <p class="upcoming">UPCOMING TRIPS</p>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Approved</li>
-            </ul>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Approved</li>
-            </ul>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Approved</li>
-            </ul>
           </section>
           <section class="pending-trips">
             <p class="pending">PENDING TRIPS</p>
-            <ul>
-              <li>Destination:</li>
-              <li>Duration:</li>
-              <li>Dates:</li>
-              <li>Status: Pending</li>
-            </ul>
           </section>
         </section>
       </section>
