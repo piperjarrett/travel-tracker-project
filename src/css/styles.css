@@ -39,8 +39,13 @@ h1 {
   display: flex;
   margin-right: 1.5vw;
   align-items: center;
+  justify-content: flex-end;
 }
 
+.arrow-icon {
+  width: 9%;
+  padding: 8px;
+}
 .amount-spent {
   font-size: 14px;
 }
