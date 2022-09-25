@@ -29,10 +29,16 @@ h1 {
   flex-wrap: wrap;
 }
 
+.travel-tracker-icon {
+  width: 10%;
+  padding: 10px;
+}
+
 .user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 15px;
 }
 
 .profile-section {
