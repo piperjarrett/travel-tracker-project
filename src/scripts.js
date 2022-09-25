@@ -140,7 +140,7 @@ function displayNewTrip() {
   submitButton.addEventListener("click", displayPendingTrips);
 }
 
-function displayPendingTrips(event) {
+function activatePostCall(event) {
   event.preventDefault();
   let newTripDestinationId = destinationData.find(
     (destination) =>
@@ -157,13 +157,16 @@ function displayPendingTrips(event) {
     status: "pending",
     suggestedActivities: [],
   };
-
   postData(data).then((responses) => {
     assignData(responses);
     travelerTrips = new TravelerTrips(
       tripsData.filter((trip) => trip.userID === traveler.id)
     );
   });
+}
+
+function displayPendingTrips() {
+  activatePostCall(event);
   pendingTrips.innerHTML += `<ul>
     <li>Destination: ${
       destinationList.options[destinationList.selectedIndex].text
@@ -174,7 +177,6 @@ function displayPendingTrips(event) {
   </ul>`;
   newTrip.innerHTML = "";
   newTrip.innerHTML = `<p class="book-with-us">BOOK WITH US</p>`;
-  destinationList.options[destinationList.selectedIndex].text = "";
   durationInput.value = "";
   departureDateInput.value = "";
   passengersInput.value = "";
