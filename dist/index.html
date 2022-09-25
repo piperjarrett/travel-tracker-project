@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpack Starter Kit</title>
+    <title>Travel Tracker</title>
   </head>
   <body>
     <header class="top-nav">
-      <img class="travel-tracker-icon" alt="travel tracker icon" />
+      <img
+        class="travel-tracker-icon"
+        src="./images/logo_transparent.png"
+        alt="travel tracker icon"
+      />
       <div class="user-info">
         <div class="profile-section">
           <p class="profile-name">Profile Name</p>
           <img
             class="arrow-icon"
             alt="icon of arrow"
-            src="../src/images/down-arrow.svg"
+            src="./images/down-arrow.png"
           />
         </div>
         <p class="amount-spent"></p>
@@ -25,9 +29,11 @@
       <section class="booking-form">
         <div class="destination">
           <p>Destination</p>
-
           <form>
-            <select name="destinations" id="destinations"
+            <select
+              name="destinations"
+              id="destinations"
+              aria-labelledby="destinations-list"
               ><option></option>
             </select>
           </form>
@@ -37,16 +43,22 @@
           <input
             class="departure-date-input"
             type="date"
-            id="departure-city"
+            id="departure-date"
             name="trip-start"
             value=""
             min="2022-09-27"
             max="2023-09-27"
+            aria-label="departure-date"
           />
         </div>
         <div class="duration">
           <p>Duration:</p>
-          <input type="number" min="1" class="duration-input" />
+          <input
+            type="number"
+            min="1"
+            class="duration-input"
+            aria-label="trip-duration"
+          />
         </div>
         <div class="passengers">
           <p>Passengers</p>
@@ -55,6 +67,7 @@
             class="passengers-input"
             name="passengers"
             list="amount-of-passengers"
+            aria-label="amount-of-passengers"
           />
           <datalist id="amount-of-passengers">
             <option value="1"> </option>

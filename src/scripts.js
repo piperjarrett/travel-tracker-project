@@ -1,6 +1,7 @@
 //Import CSS and Images
 import "./css/styles.css";
-import "./images/down-arrow.svg";
+import "./images/down-arrow.png";
+import "./images/logo_transparent.png";
 
 //Import Fetch
 import { promiseAll } from "./apiCalls.js";
