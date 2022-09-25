@@ -4,6 +4,7 @@ import "./images/down-arrow.svg";
 
 //Import Fetch
 import { promiseAll } from "./apiCalls.js";
+import { postData } from "./apiCalls.js";
 
 //Import Classes
 import Traveler from "./Traveler";
@@ -42,9 +43,7 @@ function getRandomIndex(travelersData) {
 }
 
 promiseAll().then((responses) => {
-  travelersData = responses[0].travelers;
-  tripsData = responses[1].trips;
-  destinationData = responses[2].destinations;
+  assignData(responses);
   traveler = new Traveler(travelersData[getRandomIndex(travelersData)]);
   travelerTrips = new TravelerTrips(
     tripsData.filter((trip) => trip.userID === traveler.id)
@@ -52,26 +51,34 @@ promiseAll().then((responses) => {
   displayDashboard();
 });
 
+function assignData(responses) {
+  travelersData = responses[0].travelers;
+  tripsData = responses[1].trips;
+  destinationData = responses[2].destinations;
+}
+
 function displayDashboard() {
   profileName.innerText = `Hi, ${traveler.getFirstName()}!`;
   totalAmountSpent.innerText = `Total Amount Spent In 2022:
   ${travelerTrips.calculateTotalCost(destinationData)}`;
   destinationData.forEach((destination) => {
-    console.log(typeof destination.destination);
     destinationList.innerHTML += `<option value=${destination.destination}>${destination.destination}</option>`;
   });
+
   travelerTrips.trips.forEach((trip) => {
-    pastTrips.innerHTML += `
-    <ul>
-      <li>Destination: ${
-        findDestination().find(
-          (destination) => destination.id === trip.destinationID
-        ).destination
-      }</li>
-      <li>Duration: ${trip.duration} days</li>
-      <li>Date: ${trip.date}</li>
-      <li>Status: ${trip.status}</li>
-    </ul>`;
+    if (trip.status === "approved") {
+      pastTrips.innerHTML += `
+      <ul>
+        <li>Destination: ${
+          findDestination().find(
+            (destination) => destination.id === trip.destinationID
+          ).destination
+        }</li>
+        <li>Duration: ${trip.duration} days</li>
+        <li>Date: ${trip.date}</li>
+        <li>Status: ${trip.status}</li>
+      </ul>`;
+    }
   });
 }
 
@@ -133,7 +140,33 @@ function displayNewTrip() {
   submitButton.addEventListener("click", displayPendingTrips);
 }
 
+function activatePostCall(event) {
+  event.preventDefault();
+  let newTripDestinationId = destinationData.find(
+    (destination) =>
+      destination.destination ===
+      destinationList.options[destinationList.selectedIndex].text
+  ).id;
+  let data = {
+    id: tripsData.length + 1,
+    userID: traveler.id,
+    destinationID: parseInt(newTripDestinationId),
+    travelers: parseInt(passengersInput.value),
+    date: departureDate,
+    duration: parseInt(durationInput.value),
+    status: "pending",
+    suggestedActivities: [],
+  };
+  postData(data).then((responses) => {
+    assignData(responses);
+    travelerTrips = new TravelerTrips(
+      tripsData.filter((trip) => trip.userID === traveler.id)
+    );
+  });
+}
+
 function displayPendingTrips() {
+  activatePostCall(event);
   pendingTrips.innerHTML += `<ul>
     <li>Destination: ${
       destinationList.options[destinationList.selectedIndex].text
@@ -144,7 +177,6 @@ function displayPendingTrips() {
   </ul>`;
   newTrip.innerHTML = "";
   newTrip.innerHTML = `<p class="book-with-us">BOOK WITH US</p>`;
-  destinationList.options[destinationList.selectedIndex].text = "";
   durationInput.value = "";
   departureDateInput.value = "";
   passengersInput.value = "";
