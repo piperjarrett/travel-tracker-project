@@ -4,9 +4,9 @@ function fetchData(details) {
     .catch((error) => console.log(error));
 }
 
-const promiseAll = () => {
+const promiseAll = (traveler) => {
   const result = Promise.all([
-    fetchData("travelers"),
+    fetchData(`travelers/${traveler}`),
     fetchData("trips"),
     fetchData("destinations"),
   ]).then((response) => {

@@ -2,10 +2,6 @@ body {
   background: #c9af98;
   margin: 0;
 }
-header {
-  background: #3a4660;
-  color: white;
-}
 
 main {
   margin-left: 1vw;
@@ -27,6 +23,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  background: #3a4660;
+  color: white;
 }
 
 .travel-tracker-icon {
@@ -191,9 +189,26 @@ h1 {
 }
 
 .login-button {
+  width: 4vw;
+  height: 2vw;
+  border-radius: 5px;
   margin-bottom: 2vw;
+  color: black;
+  background: #ed8a63;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  box-shadow: 1px 0 3px white, -1px 0 3px white, 0 1px 3px white,
+    0 -1px 3px white;
+}
+
+.username-error,
+.password-error {
+  color: white;
+  background: red;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
