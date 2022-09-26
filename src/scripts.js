@@ -20,6 +20,7 @@ let travelerTrips;
 let departureDate;
 let travelersDestination;
 let travelerNewDestination;
+let usernameSplit;
 
 //Query Selectors
 const profileName = document.querySelector(".profile-name");
@@ -35,33 +36,42 @@ const pendingTrips = document.querySelector(".pending-trips");
 const destinationInput = document.querySelector(".destinations-input");
 const bookingForm = document.querySelector(".booking-form");
 const upcomingTrips = document.querySelector(".upcoming-trips");
+const username = document.querySelector(".username-input");
+const password = document.querySelector(".password-input");
+const logInButton = document.querySelector(".login-button");
+const usernameError = document.querySelector(".username-error");
+const passwordError = document.querySelector(".password-error");
+const topNav = document.querySelector(".top-nav");
+const mainPage = document.querySelector(".main");
+const loginSection = document.querySelector(".login");
 
 //Event Listeners
-window.addEventListener("load", promiseAll);
+// window.addEventListener("load", promiseAll);
 searchButton.addEventListener("click", displayNewTrip);
 bookingForm.addEventListener("input", enableButton);
+logInButton.addEventListener("click", logInUser);
+username.addEventListener("click", function () {
+  usernameError.innerText = "";
+});
+password.addEventListener("click", function () {
+  passwordError.innerText = "";
+});
 
 //Functions
 function getRandomIndex(travelersData) {
   return Math.floor(Math.random() * travelersData.length);
 }
 
-promiseAll().then((responses) => {
-  assignData(responses);
-  traveler = new Traveler(travelersData[getRandomIndex(travelersData)]);
-  travelerTrips = new TravelerTrips(
-    tripsData.filter((trip) => trip.userID === traveler.id)
-  );
-  displayDashboard();
-});
-
 function assignData(responses) {
-  travelersData = responses[0].travelers;
+  travelersData = responses[0];
   tripsData = responses[1].trips;
   destinationData = responses[2].destinations;
 }
 
 function displayDashboard() {
+  loginSection.classList.add("hidden");
+  topNav.classList.remove("hidden");
+  mainPage.classList.remove("hidden");
   profileName.innerText = `Hi, ${traveler.getFirstName()}!`;
   totalAmountSpent.innerText = `Total Amount Spent In 2022:
   ${travelerTrips.calculateTotalCost(destinationData)}`;
@@ -254,4 +264,27 @@ function displayNewPendingTrip() {
   departureDateInput.value = "";
   passengersInput.value = "";
   enableButton();
+}
+
+function logInUser() {
+  usernameSplit = username.value.split("");
+  if (
+    usernameSplit.length > 10 ||
+    usernameSplit.length <= 8 ||
+    !username.value.includes("traveler")
+  ) {
+    usernameError.innerText = "Username does not exist";
+  } else if (password.value != "travel") {
+    passwordError.innerText = "Invalid password";
+  } else {
+    let travelerID = usernameSplit.slice(8).join("");
+    promiseAll(travelerID).then((responses) => {
+      assignData(responses);
+      traveler = new Traveler(travelersData);
+      travelerTrips = new TravelerTrips(
+        tripsData.filter((trip) => trip.userID === traveler.id)
+      );
+      displayDashboard();
+    });
+  }
 }
