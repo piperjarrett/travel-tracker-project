@@ -18,6 +18,8 @@ let destinationData;
 let traveler;
 let travelerTrips;
 let departureDate;
+let travelersDestination;
+let travelerNewDestination;
 
 //Query Selectors
 const profileName = document.querySelector(".profile-name");
@@ -73,8 +75,14 @@ function displayDashboard() {
 
 function displayPastTrip() {
   travelerTrips.trips.forEach((trip) => {
+    travelersDestination = findDestination().find(
+      (destination) => destination.id === trip.destinationID
+    );
     if (trip.status === "approved") {
       pastTrips.innerHTML += `
+      <img class='destination-image' src='${travelersDestination.image}' alt='${
+        travelersDestination.destination
+      }/>'
       <ul>
         <li>Destination: ${
           findDestination().find(
@@ -96,8 +104,14 @@ function displayUpcomingTrip() {
     .split("-")
     .join("/");
   travelerTrips.trips.forEach((trip) => {
+    travelersDestination = findDestination().find(
+      (destination) => destination.id === trip.destinationID
+    );
     if (trip.status === "approved" && trip.date > currentDate) {
       upcomingTrips.innerHTML += `
+      <img class='destination-image' src='${travelersDestination.image}' alt='${
+        travelersDestination.destination
+      }/>'
       <ul>
         <li>Destination: ${
           findDestination().find(
@@ -114,8 +128,14 @@ function displayUpcomingTrip() {
 
 function displayPendingTrips() {
   travelerTrips.trips.forEach((trip) => {
+    travelersDestination = findDestination().find(
+      (destination) => destination.id === trip.destinationID
+    );
     if (trip.status === "pending") {
       pendingTrips.innerHTML += `
+      <img class='destination-image' src='${travelersDestination.image}' alt='${
+        travelersDestination.destination
+      }/>'
       <ul>
         <li>Destination: ${
           findDestination().find(
@@ -154,8 +174,9 @@ function enableButton() {
     searchButton.disabled = true;
   }
 }
+
 function calculateCostOfNewTrip() {
-  const travelerNewDestination = destinationData.find(
+  travelerNewDestination = destinationData.find(
     (destination) =>
       destination.destination ===
       destinationList.options[destinationList.selectedIndex].text
@@ -190,7 +211,7 @@ function displayNewTrip() {
 
 function activatePostCall(event) {
   event.preventDefault();
-  let newTripDestinationId = destinationData.find(
+  const newTripDestinationId = destinationData.find(
     (destination) =>
       destination.destination ===
       destinationList.options[destinationList.selectedIndex].text
@@ -215,7 +236,11 @@ function activatePostCall(event) {
 
 function displayNewPendingTrip() {
   activatePostCall(event);
-  pendingTrips.innerHTML += `<ul>
+  pendingTrips.innerHTML += `
+  <img class='destination-image' src='${travelerNewDestination.image}' alt='${
+    travelerNewDestination.alt
+  }/>'
+  <ul>
     <li>Destination: ${
       destinationList.options[destinationList.selectedIndex].text
     }</li>
