@@ -32,6 +32,7 @@ const passengersInput = document.querySelector(".passengers-input");
 const pendingTrips = document.querySelector(".pending-trips");
 const destinationInput = document.querySelector(".destinations-input");
 const bookingForm = document.querySelector(".booking-form");
+const upcomingTrips = document.querySelector(".upcoming-trips");
 
 //Event Listeners
 window.addEventListener("load", promiseAll);
@@ -65,10 +66,56 @@ function displayDashboard() {
   destinationData.forEach((destination) => {
     destinationList.innerHTML += `<option value=${destination.destination}>${destination.destination}</option>`;
   });
+  displayPastTrip();
+  displayUpcomingTrip();
+  displayPendingTrips();
+}
 
+function displayPastTrip() {
   travelerTrips.trips.forEach((trip) => {
     if (trip.status === "approved") {
       pastTrips.innerHTML += `
+      <ul>
+        <li>Destination: ${
+          findDestination().find(
+            (destination) => destination.id === trip.destinationID
+          ).destination
+        }</li>
+        <li>Duration: ${trip.duration} days</li>
+        <li>Date: ${trip.date}</li>
+        <li>Status: ${trip.status}</li>
+      </ul>`;
+    }
+  });
+}
+
+function displayUpcomingTrip() {
+  const currentDate = new Date()
+    .toISOString()
+    .slice(0, 10)
+    .split("-")
+    .join("/");
+  travelerTrips.trips.forEach((trip) => {
+    if (trip.status === "approved" && trip.date > currentDate) {
+      upcomingTrips.innerHTML += `
+      <ul>
+        <li>Destination: ${
+          findDestination().find(
+            (destination) => destination.id === trip.destinationID
+          ).destination
+        }</li>
+        <li>Duration: ${trip.duration} days</li>
+        <li>Date: ${trip.date}</li>
+        <li>Status: ${trip.status}</li>
+      </ul>`;
+    }
+  });
+}
+
+function displayPendingTrips() {
+  travelerTrips.trips.forEach((trip) => {
+    if (trip.status === "pending") {
+      pendingTrips.innerHTML += `
       <ul>
         <li>Destination: ${
           findDestination().find(
@@ -138,7 +185,7 @@ function displayNewTrip() {
   <button class='submit-button'>Submit Trip</button>
   </div>`;
   const submitButton = document.querySelector(".submit-button");
-  submitButton.addEventListener("click", displayPendingTrips);
+  submitButton.addEventListener("click", displayNewPendingTrip);
 }
 
 function activatePostCall(event) {
@@ -166,7 +213,7 @@ function activatePostCall(event) {
   });
 }
 
-function displayPendingTrips() {
+function displayNewPendingTrip() {
   activatePostCall(event);
   pendingTrips.innerHTML += `<ul>
     <li>Destination: ${

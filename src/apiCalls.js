@@ -20,7 +20,7 @@ const postData = (data) => {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
-      "COntent-Type": "application/json",
+      "Content-Type": "application/json",
     },
   })
     .then((response) => response.json)
