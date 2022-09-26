@@ -171,3 +171,29 @@ h1 {
   padding-top: 1vw;
   border-radius: 7px;
 }
+
+.login {
+  background-color: #3a4660;
+  border-radius: 8px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  position: fixed;
+  left: 33%;
+  top: 10%;
+}
+
+.travel-tracker-icon-login {
+  width: 30%;
+  margin: 1vw;
+}
+
+.login-button {
+  margin-bottom: 2vw;
+}
+
+.hidden {
+  display: none;
+}
