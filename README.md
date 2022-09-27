@@ -20,6 +20,7 @@ Travel tracker is a webpage designed for a traveler to log in with a Username an
 ## Links
 - Project spec part 1![Screen Shot 2022-09-27 at 10 33 05 AM](https://user-images.githubusercontent.com/106850657/192583516-b9de50df-4b93-4db1-90a9-24d0aa7cbad8.png)
 - Project spec part 2![Screen Shot 2022-09-27 at 10 22 37 AM](https://user-images.githubusercontent.com/106850657/192581603-f9fb2441-8586-4db9-892a-c4caaff2ff92.png)
+- Giphy of application functionality https://media.giphy.com/media/k6Yxas5Byyp6Y9TGFB/giphy.gif
 
 ## Learning Goals 
 - Use OOP to drive the design of the application and the code
