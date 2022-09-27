@@ -23,7 +23,7 @@ const promiseAll = (traveler) => {
   return result;
 };
 
-const postData = (data) => {
+const postData = (data, traveler) => {
   return fetch("http://localhost:3001/api/v1/trips", {
     method: "POST",
     body: JSON.stringify(data),
@@ -31,8 +31,8 @@ const postData = (data) => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => response.json)
-    .then((response) => promiseAll())
+    .then((response) => response.json())
+    .then((response) => promiseAll(traveler))
     .catch((err) => {
       console.log(err);
       alert(`Something went wrong with your request, Try agin later.`);
