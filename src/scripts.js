@@ -21,6 +21,7 @@ let departureDate;
 let travelersDestination;
 let travelerNewDestination;
 let usernameSplit;
+let travelerID;
 
 //Query Selectors
 const profileName = document.querySelector(".profile-name");
@@ -231,7 +232,7 @@ function activatePostCall(event) {
     status: "pending",
     suggestedActivities: [],
   };
-  postData(data).then((responses) => {
+  postData(data, travelerID).then((responses) => {
     assignData(responses);
     travelerTrips = new TravelerTrips(
       tripsData.filter((trip) => trip.userID === traveler.id)
@@ -263,7 +264,7 @@ function displayNewPendingTrip() {
 
 function logInUser() {
   usernameSplit = username.value.split("");
-  let travelerID = usernameSplit.slice(8).join("");
+  travelerID = usernameSplit.slice(8).join("");
   if (username.value === "" && password.value === "") {
     usernameError.innerText = "Username does not exist";
     passwordError.innerText = "Invalid password";
