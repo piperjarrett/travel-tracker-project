@@ -16,9 +16,10 @@
 ## Introduction
 Travel tracker is a webpage designed for a traveler to log in with a Username and password. Once logged in the traveler will be see their past trips taken and upcoming trips, they also will be able to choose from a list of destinations and dates, and enter the duration and passengers they would like to have for a trip. Once they have entered those fields a display of the trip they have chosen with an estimated cost will be shown. After submittin that trip it will be moved to the pending trips section and able to be viewed by an agent. 
 
+
 ## Links
-- [Project spec part 1](<img width="1410" alt="Screen Shot 2022-09-27 at 10 21 46 AM" src="https://user-images.githubusercontent.com/106850657/192581495-4f19a152-0dbd-437f-8619-ee394576327c.png">)
-- [Project spec part 2](![Screen Shot 2022-09-27 at 10 22 37 AM](https://user-images.githubusercontent.com/106850657/192581603-f9fb2441-8586-4db9-892a-c4caaff2ff92.png))
+- Project spec part 1![Screen Shot 2022-09-27 at 10 33 05 AM](https://user-images.githubusercontent.com/106850657/192583516-b9de50df-4b93-4db1-90a9-24d0aa7cbad8.png)
+- Project spec part 2![Screen Shot 2022-09-27 at 10 22 37 AM](https://user-images.githubusercontent.com/106850657/192581603-f9fb2441-8586-4db9-892a-c4caaff2ff92.png)
 
 ## Learning Goals 
 - Use OOP to drive the design of the application and the code
