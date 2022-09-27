@@ -46,7 +46,6 @@ const mainPage = document.querySelector(".main");
 const loginSection = document.querySelector(".login");
 
 //Event Listeners
-// window.addEventListener("load", promiseAll);
 searchButton.addEventListener("click", displayNewTrip);
 bookingForm.addEventListener("input", enableButton);
 logInButton.addEventListener("click", logInUser);
@@ -58,10 +57,6 @@ password.addEventListener("click", function () {
 });
 
 //Functions
-function getRandomIndex(travelersData) {
-  return Math.floor(Math.random() * travelersData.length);
-}
-
 function assignData(responses) {
   travelersData = responses[0];
   tripsData = responses[1].trips;
@@ -211,7 +206,7 @@ function displayNewTrip() {
     <li>Duration: ${durationInput.value} days</li>
     <li>Date: ${departureDate}</li>
     <li>Travelers: ${passengersInput.value}</li>
-    <li>Cost: $${calculateCostOfNewTrip()}</li>
+    <li>Estimated Cost: $${calculateCostOfNewTrip()}</li>
   </ul>
   <button class='submit-button'>Submit Trip</button>
   </div>`;
@@ -268,16 +263,21 @@ function displayNewPendingTrip() {
 
 function logInUser() {
   usernameSplit = username.value.split("");
-  if (
+  let travelerID = usernameSplit.slice(8).join("");
+  if (username.value === "" && password.value === "") {
+    usernameError.innerText = "Username does not exist";
+    passwordError.innerText = "Invalid password";
+  } else if (
     usernameSplit.length > 10 ||
     usernameSplit.length <= 8 ||
-    !username.value.includes("traveler")
+    !username.value.includes("traveler") ||
+    travelerID > 50 ||
+    username.value === ""
   ) {
     usernameError.innerText = "Username does not exist";
-  } else if (password.value != "travel") {
+  } else if (password.value !== "travel" || password.value === "") {
     passwordError.innerText = "Invalid password";
   } else {
-    let travelerID = usernameSplit.slice(8).join("");
     promiseAll(travelerID).then((responses) => {
       assignData(responses);
       traveler = new Traveler(travelersData);

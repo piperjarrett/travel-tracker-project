@@ -1,7 +1,15 @@
+const loginSection = document.querySelector(".login");
+
 function fetchData(details) {
   return fetch(`http://localhost:3001/api/v1/${details}`)
     .then((response) => response.json())
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+      loginSection.innerHTML = "";
+      loginSection.innerHTML += `<h1 class='error-header'>Sorry, could not load your information</h1>
+      <p>Try again later</p>
+      `;
+    });
 }
 
 const promiseAll = (traveler) => {
@@ -25,7 +33,10 @@ const postData = (data) => {
   })
     .then((response) => response.json)
     .then((response) => promiseAll())
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      alert(`Something went wrong with your request, Try agin later.`);
+    });
 };
 
 export { promiseAll };
