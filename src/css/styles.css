@@ -209,6 +209,17 @@ h1 {
   background: red;
 }
 
+@font-face {
+  font-family: "password";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
+
+.password-input {
+  font-family: "password";
+}
+
 .hidden {
   display: none !important;
 }
